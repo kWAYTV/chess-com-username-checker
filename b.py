@@ -55,7 +55,11 @@ def check():
 clear()
 printLogo()
 try:
-    check()
+    while True:
+        check()
+        print(f"{Fore.RED}[{Fore.RESET}-{Fore.RED}] {Fore.RESET}Exiting.")
+        time.sleep(1)
+        exit()
 except KeyboardInterrupt:
     clear()
     print(f"{Fore.RED}[{Fore.RESET}-{Fore.RED}] {Fore.RESET}Exiting.")
