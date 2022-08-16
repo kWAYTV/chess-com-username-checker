@@ -6,6 +6,8 @@ clear = lambda: os.system("cls" if os.name in ("nt", "dos") else "clear") # Don'
 usernames = open('check.txt', 'r').read().split('\n')
 clear()
 count = 0
+free = 0
+taken = 0
 proxyDebug = False
 
 # Vanity Generator Logo
@@ -21,7 +23,7 @@ def printLogo():
         print(Center.XCenter(Colorate.Horizontal(Colors.white_to_green, logo, 1)))
 
 def check():
-    global count
+    global count, free, taken
     while True:
         try:
             for user in usernames:
@@ -38,12 +40,14 @@ def check():
                     print(f"{Fore.RED}[{Fore.RESET}-{Fore.RED}] {Fore.RESET}Taken: " + user)
                     with open('taken.txt', 'a') as f:
                         f.write(user + '\n')
+                        taken += 1
                 else:
                     count +=1
                     print(f"{Fore.GREEN}[{Fore.RESET}+{Fore.GREEN}] {Fore.RESET}Free: " + user)
                     with open('free.txt', 'a') as f:
                         f.write(user + '\n')
-                os.system(f"title Chess.com Username Checker ^- Checked: " + str(count) + " ^- Remaining: " + str(len(usernames) - count))
+                        free += 1
+                os.system(f"title Chess.com Username Checker - Status: {count}/{len(usernames)} - Free: {free} - Taken: {taken}")
         except Exception as e:
             print(f"{Fore.RED}[{Fore.RESET}-{Fore.RED}] {Fore.RESET}Error: " + str(e))
             continue
